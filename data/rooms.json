@@ -1,0 +1,52 @@
+[
+    {
+        "name": "Dagobah",
+        "places": 10,
+        "hub": "Madrid"
+    },
+    {
+        "name": "Endor",
+        "places": 8,
+        "hub": "Madrid"
+    },
+    {
+        "name": "Coruscant",
+        "places": 15,
+        "hub": "Sevilla"
+    },
+    {
+        "name": "Tatooine",
+        "places": 8,
+        "hub": "Sevilla"
+    },
+    {
+        "name": "Hoth",
+        "places": 6,
+        "hub": "Madrid"
+    },
+    {
+        "name": "Yavin",
+        "places": 8,
+        "hub": "Sevilla"
+    },
+    {
+        "name": "Mustafar",
+        "places": 10,
+        "hub": "Madrid"
+    },
+    {
+        "name": "Naboo",
+        "places": 20,
+        "hub": "Sevilla"
+    },
+    {
+        "name": "Mandalore",
+        "places": 10,
+        "hub": "Madrid"
+    },
+    {
+        "name": "Jakku",
+        "places": 8,
+        "hub": "Madrid"
+    }
+]

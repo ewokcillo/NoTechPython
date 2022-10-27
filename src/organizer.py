@@ -2,6 +2,7 @@ import json
 import csv
 from typing import List
 
+
 # put your best code here
 
 
@@ -39,7 +40,7 @@ def fit_in_room(rooms: List[dict], developer_name: str, department: str = None) 
     return False, rooms
 
 
-def fits_in_room(room: dict, department: str = None) ->  bool :
+def fits_in_room(room: dict, department: str = None) -> bool:
     return not room["filled"] and department not in room["departments"]
 
 

@@ -29,7 +29,7 @@ def initial_rooms_setup(rooms: List[dict]) -> List[dict]:
 
 def fit_in_perfect_room(rooms: List[dict], developer: str, department: str) -> (bool, List[dict]):
     for room in rooms:
-        if not room["filled"] and department not in room["departments"]:
+        if fits_in_room(room, developer, department):
             room["developers"].append(developer)
             room["departments"].append(department)
             room["filled"] = room["places"] > len(room["developers"])

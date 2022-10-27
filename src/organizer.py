@@ -25,34 +25,40 @@ def initial_rooms_setup(rooms: List[dict]) -> List[dict]:
         room["developers"] = []
         room["filled"] = False
         room["departments"] = []
+    return rooms
 
 
-def fit_in_perfect_room(rooms: List[dict], developer: str, department: str) -> (bool, List[dict]):
+def fit_in_room(rooms: List[dict], developer_name: str, department: str = None) -> (bool, List[dict]):
     for room in rooms:
-        if fits_in_room(room, developer, department):
-            room["developers"].append(developer)
-            room["departments"].append(department)
-            room["filled"] = room["places"] > len(room["developers"])
+        if fits_in_room(room, department):
+            room["developers"].append(developer_name)
+            if department is not None:
+                room["departments"].append(department)
+            room["filled"] = room["places"] == len(room["developers"])
             return True, rooms
     return False, rooms
 
 
-def fit_in_any_room(rooms: List[dict], developer: str) -> (bool, List[dict]):
-    for room in rooms:
-        if fits_in_room(room, developer):
-            room["developers"].append(developer)
-            room["filled"] = room["places"] > len(room["developers"])
-            return True, rooms
-    return False, rooms
-
-
-def fits_in_room(room: dict , department: str = None) ->  bool :
+def fits_in_room(room: dict, department: str = None) ->  bool :
     return not room["filled"] and department not in room["departments"]
 
 
+# Load initial data
 rooms = load_rooms('../data/rooms.json')
 developers = load_developers('../data/developers_departments.csv')
+sad_developers_without_room = []
+# Setup initial rooms state
+rooms = initial_rooms_setup(rooms)
+# Search best fit for developers
+for developer in developers:
+    fit, rooms = fit_in_room(rooms, developer[0], developer[1])
+    if not fit:
+        fit, rooms = fit_in_room(rooms, developer[0])
+        if not fit:
+            sad_developers_without_room.append(developer)
 
-
-print(rooms)
-print(developers)
+# print final results
+print(f"Final result of each room")
+for room in rooms:
+    print(f"Room {room['name']}: {room['developers']} form departments {room['departments']}")
+print(f"poor sad lonely guys {sad_developers_without_room}")
